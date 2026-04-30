@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Vantix Smart Rental — Portfolio 2026</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;600;700;800&display=swap"
@@ -880,6 +880,74 @@
         gap: 1.5rem;
         text-align: center;
       }
+    }
+
+    /* ===== RESPONSIVE FIX ===== */
+
+    /* Fluid container */
+    .section-inner {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    /* Better hero spacing */
+    .hero-left,
+    .hero-right {
+      padding: clamp(5rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    /* Auto responsive grids */
+    .services-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .tech-cards {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .trust-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    /* Better text scaling */
+    body {
+      font-size: clamp(14px, 1vw, 18px);
+    }
+
+    /* Fix mobile layout */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 500px) {
+      .hero-title {
+        font-size: 2.4rem;
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+      }
+
+      .plan-price {
+        font-size: 3rem;
+      }
+
+      .case-right {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Prevent horizontal scroll */
+    html,
+    body {
+      overflow-x: hidden;
     }
   </style>
 </head>
