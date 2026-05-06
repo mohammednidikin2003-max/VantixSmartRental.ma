@@ -611,11 +611,16 @@
     }
 
     .case-study-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .case-top {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
-      gap: 0;
-      min-height: 500px;
-      border: 1px solid rgba(201, 168, 76, 0.15);
+      min-height: 420px;
     }
 
     .case-left {
@@ -694,6 +699,105 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted);
+    }
+
+    /* ── CASE GALLERY ── */
+    .case-gallery {
+      border-top: 1px solid rgba(201, 168, 76, 0.12);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    .gallery-slot {
+      aspect-ratio: 4/3;
+      background: var(--dark-3);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, filter 0.3s ease;
+      filter: brightness(0.9);
+    }
+
+    .gallery-slot:hover img {
+      transform: scale(1.06);
+      filter: brightness(1.05);
+    }
+
+    .gallery-slot.empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border: 1px dashed rgba(201, 168, 76, 0.2);
+      background: var(--dark-3);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .gallery-slot.empty:hover {
+      background: #1E1E2A;
+      border-color: rgba(201, 168, 76, 0.45);
+    }
+
+    .gallery-slot.empty .add-icon {
+      font-size: 1.8rem;
+      color: rgba(201, 168, 76, 0.35);
+      line-height: 1;
+    }
+
+    .gallery-slot.empty .add-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(201, 168, 76, 0.4);
+    }
+
+    .gallery-slot input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(10,10,15,0.85), transparent);
+      padding: 1.2rem 1rem 0.8rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(240,237,230,0.7);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-slot:hover .gallery-label {
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+      .case-top {
+        grid-template-columns: 1fr;
+      }
+      .case-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     /* ── TRUST ── */
@@ -1140,31 +1244,56 @@
         </div>
       </div>
       <div class="case-study-inner reveal">
-        <div class="case-left">
-          <p class="case-tag">Résidence Transformée</p>
-          <h3 class="case-property">Appartement 105m²<br><em>Vue Piscine</em></h3>
-          <p class="case-location">Bouznika, Côte Atlantique</p>
-          <p style="margin-top:2rem; font-size:0.95rem; font-weight:300; line-height:1.75; color:var(--muted);">
-            Grâce au positionnement premium et à l'intelligence artificielle, nous avons transformé une résidence
-            secondaire en un actif hautement rentable en moins de 4 mois.
-          </p>
+        <div class="case-top">
+          <div class="case-left">
+            <p class="case-tag">Résidence Transformée</p>
+            <h3 class="case-property">Appartement Vue Piscine<br><em>Bouznika</em></h3>
+            <p class="case-location">Côte Atlantique, Maroc</p>
+            <p style="margin-top:2rem; font-size:0.95rem; font-weight:300; line-height:1.75; color:var(--muted);">
+              Grâce au positionnement premium et à l'intelligence artificielle, nous avons transformé une résidence
+              secondaire en un actif hautement rentable en moins de 4 mois.
+            </p>
+          </div>
+          <div class="case-right">
+            <div class="case-metric">
+              <div class="case-metric-value">58 <em>k</em></div>
+              <div class="case-metric-label">Revenu DH · 4 mois</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">92<em>%</em></div>
+              <div class="case-metric-label">Taux d'occupation</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">4<em>mois</em></div>
+              <div class="case-metric-label">Délai de transformation</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-value">5<em>★</em></div>
+              <div class="case-metric-label">Satisfaction clients</div>
+            </div>
+          </div>
         </div>
-        <div class="case-right">
-          <div class="case-metric">
-            <div class="case-metric-value">58 <em>k</em></div>
-            <div class="case-metric-label">Revenu DH · 4 mois</div>
+        <!-- PHOTO GALLERY -->
+        <div class="case-gallery" id="caseGallery">
+          <div class="gallery-slot" id="slot-0">
+            <img src="1778079560614_image.png" alt="Appartement Bouznika">
+            <span class="gallery-label">Cliquez pour changer</span>
+            <input type="file" accept="image/*" onchange="addPhoto(0, this)">
           </div>
-          <div class="case-metric">
-            <div class="case-metric-value">92<em>%</em></div>
-            <div class="case-metric-label">Taux d'occupation</div>
+          <div class="gallery-slot empty" id="slot-1">
+            <span class="add-icon">＋</span>
+            <span class="add-label">Ajouter une photo</span>
+            <input type="file" accept="image/*" onchange="addPhoto(1, this)">
           </div>
-          <div class="case-metric">
-            <div class="case-metric-value">105<em>m²</em></div>
-            <div class="case-metric-label">Surface</div>
+          <div class="gallery-slot empty" id="slot-2">
+            <span class="add-icon">＋</span>
+            <span class="add-label">Ajouter une photo</span>
+            <input type="file" accept="image/*" onchange="addPhoto(2, this)">
           </div>
-          <div class="case-metric">
-            <div class="case-metric-value">5<em>★</em></div>
-            <div class="case-metric-label">Satisfaction clients</div>
+          <div class="gallery-slot empty" id="slot-3">
+            <span class="add-icon">＋</span>
+            <span class="add-label">Ajouter une photo</span>
+            <input type="file" accept="image/*" onchange="addPhoto(3, this)">
           </div>
         </div>
       </div>
@@ -1223,6 +1352,16 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
     reveals.forEach(el => observer.observe(el));
+
+    // Gallery photo upload
+    function addPhoto(index, input) {
+      const file = input.files[0];
+      if (!file) return;
+      const slot = document.getElementById("slot-" + index);
+      const url = URL.createObjectURL(file);
+      slot.classList.remove("empty");
+      slot.innerHTML = `<img src="${url}" alt="Photo"><span class="gallery-label">Cliquez pour changer</span><input type="file" accept="image/*" onchange="addPhoto(${index}, this)">`;
+    }
 
     // Stagger children of grids
     document.querySelectorAll('.services-grid .service-item, .trust-grid .trust-item, .tech-cards .tech-card').forEach((el, i) => {
