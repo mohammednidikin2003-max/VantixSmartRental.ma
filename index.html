@@ -732,44 +732,10 @@
       filter: brightness(1.05);
     }
 
-    .gallery-slot.empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      border: 1px dashed rgba(201, 168, 76, 0.2);
-      background: var(--dark-3);
-      transition: background 0.3s, border-color 0.3s;
-    }
 
-    .gallery-slot.empty:hover {
-      background: #1E1E2A;
-      border-color: rgba(201, 168, 76, 0.45);
-    }
 
-    .gallery-slot.empty .add-icon {
-      font-size: 1.8rem;
-      color: rgba(201, 168, 76, 0.35);
-      line-height: 1;
-    }
 
-    .gallery-slot.empty .add-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(201, 168, 76, 0.4);
-    }
 
-    .gallery-slot input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-    }
 
     .gallery-label {
       position: absolute;
@@ -1276,24 +1242,20 @@
         <!-- PHOTO GALLERY -->
         <div class="case-gallery" id="caseGallery">
           <div class="gallery-slot" id="slot-0">
-            <img src="1778079560614_image.png" alt="Appartement Bouznika">
-            <span class="gallery-label">Cliquez pour changer</span>
-            <input type="file" accept="image/*" onchange="addPhoto(0, this)">
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" alt="Résidence avec piscine">
+            <span class="gallery-label">Résidence & piscine</span>
           </div>
-          <div class="gallery-slot empty" id="slot-1">
-            <span class="add-icon">＋</span>
-            <span class="add-label">Ajouter une photo</span>
-            <input type="file" accept="image/*" onchange="addPhoto(1, this)">
+          <div class="gallery-slot" id="slot-1">
+            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1200&q=80" alt="Salle de bain moderne">
+            <span class="gallery-label">Salle de bain</span>
           </div>
-          <div class="gallery-slot empty" id="slot-2">
-            <span class="add-icon">＋</span>
-            <span class="add-label">Ajouter une photo</span>
-            <input type="file" accept="image/*" onchange="addPhoto(2, this)">
+          <div class="gallery-slot" id="slot-2">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Salon et cuisine moderne">
+            <span class="gallery-label">Salon & cuisine</span>
           </div>
-          <div class="gallery-slot empty" id="slot-3">
-            <span class="add-icon">＋</span>
-            <span class="add-label">Ajouter une photo</span>
-            <input type="file" accept="image/*" onchange="addPhoto(3, this)">
+          <div class="gallery-slot" id="slot-3">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Plage de Bouznika">
+            <span class="gallery-label">Plage à proximité</span>
           </div>
         </div>
       </div>
@@ -1353,15 +1315,6 @@
 
     reveals.forEach(el => observer.observe(el));
 
-    // Gallery photo upload
-    function addPhoto(index, input) {
-      const file = input.files[0];
-      if (!file) return;
-      const slot = document.getElementById("slot-" + index);
-      const url = URL.createObjectURL(file);
-      slot.classList.remove("empty");
-      slot.innerHTML = `<img src="${url}" alt="Photo"><span class="gallery-label">Cliquez pour changer</span><input type="file" accept="image/*" onchange="addPhoto(${index}, this)">`;
-    }
 
     // Stagger children of grids
     document.querySelectorAll('.services-grid .service-item, .trust-grid .trust-item, .tech-cards .tech-card').forEach((el, i) => {
